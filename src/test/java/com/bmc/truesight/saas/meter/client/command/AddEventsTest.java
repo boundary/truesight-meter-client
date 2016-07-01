@@ -3,6 +3,7 @@ package com.bmc.truesight.saas.meter.client.command;
 import com.bmc.truesight.saas.meter.client.model.ImmutableEvent;
 import com.bmc.truesight.saas.meter.client.model.Event;
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import org.junit.Test;
 
@@ -65,13 +66,14 @@ public class AddEventsTest {
         assertTrue(eventString.startsWith("_bevent:" + e.title().replaceAll("\\|", "\\\\|") + "|"));
         assertTrue(eventString.contains("t:" + e.severity().name()));
         assertTrue(eventString.contains("d:" + e.timestamp().getEpochSecond()));
+        assertTrue(eventString.contains("properties:baseball=The Cubs,football=The Bears,basketball=The Bulls"));
 
         validateOptionalEventString(e.message(), "m", eventString);
         validateOptionalEventString(e.source(), "h", eventString);
         validateOptionalEventString(e.sender(), "s", eventString);
-        validateOptionalEventString(e.at(), "at", eventString);
+        validateOptionalEventString(e.appDataType(), "at", eventString);
 
-        validateOptionalEventString(e.ad(), "ad", eventString);
+        validateOptionalEventString(e.appData(), "ad", eventString);
 
         if (e.tags().isEmpty()) {
             assertFalse(eventString.contains("|tags:" + e.tags().stream().collect(joining(","))));
@@ -94,16 +96,17 @@ public class AddEventsTest {
 
 
      ImmutableEvent.Builder defaultEvent() {
-
-        return ImmutableEvent.builder()
-                .title("awesome event")
-                .message("hey now some stuff (and a pipe |)")
-                .severity(Event.Severity.error)
-                .source("saucy.fire")
-                .ad("ad stuff")
-                .at("at stuff")
-                .sender("the sender")
-                .tags(ImmutableSet.of("tag1", "tag2"));
+         ImmutableMap immutableMap = ImmutableMap.of("baseball", "The Cubs", "football", "The Bears", "basketball", "The Bulls");
+         return ImmutableEvent.builder()
+                 .title("awesome event")
+                 .message("hey now some stuff (and a pipe |)")
+                 .severity(Event.Severity.error)
+                 .source("saucy.fire")
+                 .appData("ad stuff")
+                 .appDataType("at stuff")
+                 .sender("the sender")
+                 .properties(immutableMap)
+                 .tags(ImmutableSet.of("tag1", "tag2"));
 
     }
 
