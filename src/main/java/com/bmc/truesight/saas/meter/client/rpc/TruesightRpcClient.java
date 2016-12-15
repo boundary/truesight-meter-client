@@ -156,7 +156,7 @@ public class TruesightRpcClient implements TruesightMeterClient {
                 try {
                     this.connectSync();
                 } catch (Exception e) {
-                    LOGGER.error("Exception reconnecting");
+                    LOGGER.error("Exception reconnecting, make sure your TrueSight meter is running");
                 } finally {
                     connectionPending.set(false);
                 }
