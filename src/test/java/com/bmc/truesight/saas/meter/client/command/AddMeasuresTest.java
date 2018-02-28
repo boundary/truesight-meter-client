@@ -26,6 +26,7 @@ public class AddMeasuresTest {
         System.out.println(data);
 
         validateMeasureString(m, data);
+        assertFalse(data.contains("s:Vulcan"));
     }
 
     @Test
@@ -47,7 +48,24 @@ public class AddMeasuresTest {
 
         validateMeasureString(m0, data.get(0));
         validateMeasureString(m1, data.get(1));
+        assertFalse(data.contains("s:Vulcan"));
+    }
 
+    @Test
+    public void testAddMeasuresWithSource() {
+
+        Measure m = ImmutableMeasure.builder()
+                                    .name("the-measure")
+                                    .value(44.2)
+                                    .source(Optional.of("Vulcan"))
+                                    .build();
+        AddMeasures am = AddMeasures.of(m);
+
+        String data = (String) am.getParams().get("data");
+        System.out.println(data);
+
+        validateMeasureString(m, data);
+        assertTrue(data.contains("s:Vulcan"));
     }
 
     private void validateOptionalMeasureString(Optional<String> optional, String id, String measureString) {
