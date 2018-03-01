@@ -71,6 +71,14 @@ public abstract class Measure {
                 .build();
     }
 
+    public static Measure of(String name, double value, Optional<String> source) {
+        return ImmutableMeasure.builder()
+                               .name(name)
+                               .value(value)
+                               .source(source)
+                               .build();
+    }
+
     /**
      * Creates a Measure using the required parameters: name, value, timestamp and source.
      *
@@ -87,6 +95,15 @@ public abstract class Measure {
                 .timestamp(timestamp)
                 .source(source)
                 .build();
+    }
+
+    public static Measure of(String name, double value, Instant timestamp, Optional<String> source) {
+        return ImmutableMeasure.builder()
+                               .name(name)
+                               .value(value)
+                               .timestamp(timestamp)
+                               .source(source)
+                               .build();
     }
 
     @Value.Check
