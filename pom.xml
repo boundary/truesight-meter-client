@@ -4,7 +4,7 @@
 
     <groupId>com.bmc.truesight.saas</groupId>
     <artifactId>meter-client</artifactId>
-    <version>0.13-SNAPSHOT</version>
+    <version>0.12-SNAPSHOT</version>
 
     <name>${project.groupId}:${project.artifactId}</name>
     <description>A java library for interacting with the TrueSight Meter.</description>
