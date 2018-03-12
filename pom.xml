@@ -4,7 +4,7 @@
 
     <groupId>com.bmc.truesight.saas</groupId>
     <artifactId>meter-client</artifactId>
-    <version>0.12</version>
+    <version>0.13-SNAPSHOT</version>
 
     <name>${project.groupId}:${project.artifactId}</name>
     <description>A java library for interacting with the TrueSight Meter.</description>
@@ -204,7 +204,7 @@
         <url>https://github.com/boundary/truesight-meter-client</url>
         <connection>scm:git:ssh://git@github.com/boundary/truesight-meter-client.git</connection>
         <developerConnection>scm:git:git@github.com:boundary/truesight-meter-client.git</developerConnection>
-        <tag>meter-client-0.12</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <profiles>
